@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/jdbc  http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+    <!-- 내거 -->
+	<!-- Configuration for encryptor, based on environment variables.         -->
+	<!-- In this example, the encryption password will be read from an        -->
+	<!-- environment variable called "APP_ENCRYPTION_PASSWORD" which, once    --> 
+	<!-- the application has been started, could be safely unset.             -->
+    <!-- <bean id="encryptorConfig" class="org.jasypt.encryption.pbe.config.EnvironmentStringPBEConfig">
+		<property name="algorithm" value="PBEWithMD5AndDES" />
+		<property name="password" value="APP_ENCRYPTION_PASSWORD"/>
+	</bean>
+
+	 The will be the encryptor used for decrypting configuration values. 
+	 <bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config" ref="encryptorConfig" />
+	</bean>
+	
+	<bean id="propertyConfigurer" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="encryptor" />
+	    <property name="locations">
+	        <list>
+	            <value>classpath:/globals.properties</value>
+	        </list>
+	 	</property>
+	</bean> -->
+   
+   <!-- dev DB -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test" />
+        <property name="username" value="aaaa"/>
+        <property name="password" value="aaaa"/>
+        <property name="initialSize" value="100" />
+		<property name="maxActive" value="200" />
+		<property name="maxWait" value="10000" />
+		<property name="maxIdle" value="200" />
+		<property name="minIdle" value="10" />
+		
+	<!-- 특정 시간마다 validationQuery를 실행 셋팅 시작-->
+        <property name="validationQuery" value="select 1"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="7200000"/>
+    <!-- 특정 시간마다 validationQuery를 실행 셋팅 끝-->
+    </bean>
+   
+    
+    <!-- oracle
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:example" />
+        <property name="username" value="user"/>
+        <property name="password" value="password"/>
+    </bean>
+    -->
+    
+</beans>

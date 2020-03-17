@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+ "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+ "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+
+	<definition name="mainTemplate" templateExpression="/WEB-INF/jsp/tiles/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
+ 	</definition>
+
+<!-- 	<definition name="login" templateExpression="/WEB-INF/jsp/view/login.jsp" /> -->
+	<definition name="accessDenied" templateExpression="/WEB-INF/jsp/view/accessDenied.jsp" />
+	<definition name="bizException" templateExpression="/WEB-INF/jsp/view/bizException.jsp" />
+	<definition name="dataAccessFailure" templateExpression="/WEB-INF/jsp/view/dataAccessFailure.jsp" />
+	<definition name="unknownError" templateExpression="/WEB-INF/jsp/view/unknownError.jsp" />
+
+	<definition name="*" extends="mainTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/{1}.jsp" />
+	</definition>
+	<definition name="*/*" extends="mainTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/view/{1}/{2}.jsp" />
+	</definition>
+
+</tiles-definitions>
