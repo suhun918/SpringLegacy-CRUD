@@ -229,7 +229,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20090211</version>
+			<version>20230227</version>
 		</dependency>
 
 		<!-- spring4.x부터 jackson 1.8/1.9 사용불가능 0eun -->
